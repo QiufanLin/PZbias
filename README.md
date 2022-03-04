@@ -35,6 +35,7 @@ The code is tested using:
 
 -- Baseline (testing):
 > python python PZbias_main.py --ne=1 --fth=0 --nsub=0 --errl=0 --midreduce=0 --testphase=1 --tstep=0 --multir=0 --usecfht=0 --usecfhtd=0 --bins=180 --net=0 --itealter=0 --softlabel=1 --shiftlabel=1
+
 (Set "--testphase=1")
 
 -- Step 1 (training):
