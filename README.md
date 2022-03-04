@@ -11,14 +11,14 @@ We propose a set of consecutive steps to resolve the two biases:
 - Step 4 (To correct for z_{photo}-dependent residuals): Calibrate z_{photo} in each (r-magnitude, z_{photo}) cell based on a resampled training set whose (r-magnitude, z_{spec}) distribution matches the (r-magnitude, z_{photo}) distribution of the test set (regarded as the "expected" (r-magnitude, z_{spec}) distribution).
 
 
-## Results
+# Results
 
 ![image](https://github.com/QiufanLin/PZbias/main/delz_compare_new2.png)
 
 ![image](https://github.com/QiufanLin/PZbias/main/SDSSresP_new2.png)
 
 
-## Training and Testing
+# Training and Testing
 
 The code is tested using: 
 - Python 2.7.15
@@ -27,8 +27,7 @@ The code is tested using:
 - GPU: Titan V / GeForce RTX 2080 Ti
 
 
-#####
--- Main experiments with the SDSS data and "Net_P"
+## Main experiments with the SDSS data and "Net_P"
 
 *** Both training and testing have to be run consecutively in either Baseline or Steps 1~3; this applies to all the following cases.
 
@@ -61,15 +60,13 @@ Set "--fth=200", "--tstep=3", "--multir=1", "--testphase=1"
 
 
 
-#####
--- Main experiments with the CFHTLS-WIDE data and "Net_P"
+## Main experiments with the CFHTLS-WIDE data and "Net_P"
 
 Set "--usecfht=1", "--bins=1000"
 
 Set "--fth=100" for Steps 2 & 3
 
-#####
--- Main experiments with the CFHTLS-DEEP data and "Net_P"
+## Main experiments with the CFHTLS-DEEP data and "Net_P"
 
 Set "--usecfht=1", "--usecfhtd=1", "--bins=1000"
 
