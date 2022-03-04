@@ -65,6 +65,7 @@ Set "--usecfht=1", "--bins=1000"
 
 Set "--fth=100" for Steps 2 & 3
 
+
 ## Main experiments with the CFHTLS-DEEP data and "Net_P"
 
 Set "--usecfht=1", "--usecfhtd=1", "--bins=1000"
@@ -72,16 +73,61 @@ Set "--usecfht=1", "--usecfhtd=1", "--bins=1000"
 Set "--fth=5" for Steps 2 & 3
 
 
-## Variant (Step 3a): using hard labels with adjusted means for Step 3.
+## Variant (Step 3a): using hard labels with adjusted means for Step 3
 
 Set "softlabel=0" for Step 3
 
-## Variant (Step 3b): using softened labels with unadjusted means for Step 3.
+
+## Variant (Step 3b): using softened labels with unadjusted means for Step 3
 
 Set "--shiftlabel=0" for Step 3
 
-## Variant (Step 3\2): applying Step 3 directly after Step 1 (skipping Step 2).
+
+## Variant (Step 3\2): applying Step 3 directly after Step 1 (skipping Step 2)
 
 Set "--fth=10000"
 
 *** Running Step 2 by setting "--tstep=2" is still necessary between "--tstep=1" and "--tstep=3".
+
+
+## Variant: training with a modified SDSS sample and "Net_P"
+
+Set "--midreduce=1"
+
+
+## Impact of the balancing threshold
+
+Set "--fth" = 5,10,20,50,100,200,500,1000,2000 for the SDSS data in Steps 2 & 3
+
+Set "--fth" = 5,10,20,50,100,200 for the CFHTLS-WIDE data in Steps 2 & 3
+
+
+## Impact of the bin size with the SDSS data and "Net_P"
+
+Set "--bins" = 20,50,180,500,1000
+
+
+## Impact of the number of iterations with the SDSS data and "Net_P"
+
+Set "--itealter=240000" in Baseline & Step 1
+
+Set "--itealter" = 2000,5000,10000,20000,60000,120000,160000,240000 in Steps 2 & 3
+
+
+## Impact of the sample size with the SDSS data and "Net_P"
+
+Set "--nsub" = 100000,150000,200000,300000
+
+
+## Impact of labeling errors with the SDSS data and "Net_P"
+
+Set "--errl" = 0.2, 0.1, 0.06, 0.04, 0.02
+
+
+## Impact of the model complexity with the SDSS data
+
+Set "--net" = 0,1,2,3,4
+
+(Net_P, Net_T, Net_S1, Net_S2, Net_S3)
+
+
