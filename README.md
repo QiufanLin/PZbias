@@ -34,11 +34,11 @@ The code is tested using:
 *** Run different folds of experiments by setting "--ne" = 1,2,3,4,5.
 
 - Baseline (training):
-> python python PZbias_main.py --ne=1 --fth=0 --nsub=0 --errl=0 --midreduce=0 --testphase=0 --tstep=0 --multir=0 --usecfht=0 --usecfhtd=0 --bins=180 --net=0 --itealter=0 --softlabel=1 --shiftlabel=1
+> python PZbias_main.py --ne=1 --fth=0 --nsub=0 --errl=0 --midreduce=0 --testphase=0 --tstep=0 --multir=0 --usecfht=0 --usecfhtd=0 --bins=180 --net=0 --itealter=0 --softlabel=1 --shiftlabel=1
 
 - Baseline (testing):
 Set "--testphase=1"
-> python python PZbias_main.py --ne=1 --fth=0 --nsub=0 --errl=0 --midreduce=0 --testphase=1 --tstep=0 --multir=0 --usecfht=0 --usecfhtd=0 --bins=180 --net=0 --itealter=0 --softlabel=1 --shiftlabel=1
+> python PZbias_main.py --ne=1 --fth=0 --nsub=0 --errl=0 --midreduce=0 --testphase=1 --tstep=0 --multir=0 --usecfht=0 --usecfhtd=0 --bins=180 --net=0 --itealter=0 --softlabel=1 --shiftlabel=1
 
 - Step 1 (training):
 Set "--tstep=1", "--multir=1", "--testphase=0"
@@ -59,7 +59,6 @@ Set "--fth=200", "--tstep=3", "--multir=1", "--testphase=0"
 Set "--fth=200", "--tstep=3", "--multir=1", "--testphase=1"
 
 
-
 ## Main experiments with the CFHTLS-WIDE data and "Net_P"
 
 Set "--usecfht=1", "--bins=1000"
@@ -71,3 +70,18 @@ Set "--fth=100" for Steps 2 & 3
 Set "--usecfht=1", "--usecfhtd=1", "--bins=1000"
 
 Set "--fth=5" for Steps 2 & 3
+
+
+## Variant (Step 3a): using hard labels with adjusted means for Step 3.
+
+Set "softlabel=0" for Step 3
+
+## Variant (Step 3b): using softened labels with unadjusted means for Step 3.
+
+Set "--shiftlabel=0" for Step 3
+
+## Variant (Step 3\2): applying Step 3 directly after Step 1 (skipping Step 2).
+
+Set "--fth=10000"
+
+*** Running Step 2 by setting "--tstep=2" is still necessary between "--tstep=1" and "--tstep=3".
