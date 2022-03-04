@@ -75,7 +75,7 @@ Set "--fth=5" for Steps 2 & 3
 
 ## Variant (Step 3a): using hard labels with adjusted means for Step 3
 
-Set "softlabel=0" for Step 3
+Set "--softlabel=0" for Step 3
 
 
 ## Variant (Step 3b): using softened labels with unadjusted means for Step 3
