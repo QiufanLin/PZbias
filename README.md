@@ -21,37 +21,56 @@ We propose a set of consecutive steps to resolve the two biases:
 ## Training and Testing
 
 The code is tested using: 
--- Python 2.7.15
--- TensorFlow 1.12.0
--- CPU: Intel(R) Core(TM) i9-7920X
--- GPU: Titan V / GeForce RTX 2080 Ti
+- Python 2.7.15
+- TensorFlow 1.12.0
+- CPU: Intel(R) Core(TM) i9-7920X
+- GPU: Titan V / GeForce RTX 2080 Ti
 
 
-- Main experiments with the SDSS data and "Net_P"
-* Both training and testing have to be run consecutively in either Baseline or Steps 1~3; this applies to all the following cases.
+#####
+-- Main experiments with the SDSS data and "Net_P"
 
--- Baseline (training):
+*** Both training and testing have to be run consecutively in either Baseline or Steps 1~3; this applies to all the following cases.
+
+*** Run different folds of experiments by setting "--ne" = 1,2,3,4,5.
+
+- Baseline (training):
 > python python PZbias_main.py --ne=1 --fth=0 --nsub=0 --errl=0 --midreduce=0 --testphase=0 --tstep=0 --multir=0 --usecfht=0 --usecfhtd=0 --bins=180 --net=0 --itealter=0 --softlabel=1 --shiftlabel=1
 
--- Baseline (testing):
+- Baseline (testing):
+Set "--testphase=1"
 > python python PZbias_main.py --ne=1 --fth=0 --nsub=0 --errl=0 --midreduce=0 --testphase=1 --tstep=0 --multir=0 --usecfht=0 --usecfhtd=0 --bins=180 --net=0 --itealter=0 --softlabel=1 --shiftlabel=1
 
-(Set "--testphase=1")
+- Step 1 (training):
+Set "--tstep=1", "--multir=1", "--testphase=0"
 
--- Step 1 (training):
-(Set "--tstep=1", "--multir=1", "--testphase=0")
+- Step 1 (testing):
+Set "--tstep=1", "--multir=1", "--testphase=1"
 
--- Step 1 (testing):
-(Set "--tstep=1", "--multir=1", "--testphase=1")
+- Step 2 (training):
+Set "--fth=200", "--tstep=2", "--multir=1", "--testphase=0"
 
--- Step 2 (training):
-(Set "--fth=200", "--tstep=2", "--multir=1", "--testphase=0")
+- Step 2 (testing):
+Set "--fth=200", "--tstep=2", "--multir=1", "--testphase=1"
 
--- Step 2 (testing):
-(Set "--fth=200", "--tstep=2", "--multir=1", "--testphase=1")
+- Step 3 (training):
+Set "--fth=200", "--tstep=3", "--multir=1", "--testphase=0"
 
--- Step 3 (training):
-(Set "--fth=200", "--tstep=3", "--multir=1", "--testphase=0")
+- Step 3 (testing):
+Set "--fth=200", "--tstep=3", "--multir=1", "--testphase=1"
 
--- Step 3 (testing):
-(Set "--fth=200", "--tstep=3", "--multir=1", "--testphase=1")
+
+
+#####
+-- Main experiments with the CFHTLS-WIDE data and "Net_P"
+
+Set "--usecfht=1", "--bins=1000"
+
+Set "--fth=100" for Steps 2 & 3
+
+#####
+-- Main experiments with the CFHTLS-DEEP data and "Net_P"
+
+Set "--usecfht=1", "--usecfhtd=1", "--bins=1000"
+
+Set "--fth=5" for Steps 2 & 3
