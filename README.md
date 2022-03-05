@@ -34,29 +34,29 @@ The code is tested using:
 *** Run different folds of experiments by setting "--ne" = 1,2,3,4,5.
 
 - Baseline (training):
-> python PZbias_main.py --ne=1 --fth=0 --nsub=0 --errl=0 --midreduce=0 --testphase=0 --tstep=0 --multir=0 --usecfht=0 --usecfhtd=0 --bins=180 --net=0 --itealter=0 --softlabel=1 --shiftlabel=1
+> python PZbias_main.py --ne=1 --fth=0 --nsub=0 --errl=0 --midreduce=0 --testphase=0 --tstep=0 --usecfht=0 --usecfhtd=0 --bins=180 --net=0 --itealter=0 --softlabel=1 --shiftlabel=1
 
 - Baseline (testing):
 Set "--testphase=1"
-> python PZbias_main.py --ne=1 --fth=0 --nsub=0 --errl=0 --midreduce=0 --testphase=1 --tstep=0 --multir=0 --usecfht=0 --usecfhtd=0 --bins=180 --net=0 --itealter=0 --softlabel=1 --shiftlabel=1
+> python PZbias_main.py --ne=1 --fth=0 --nsub=0 --errl=0 --midreduce=0 --testphase=1 --tstep=0 --usecfht=0 --usecfhtd=0 --bins=180 --net=0 --itealter=0 --softlabel=1 --shiftlabel=1
 
 - Step 1 (training):
-Set "--tstep=1", "--multir=1", "--testphase=0"
+Set "--tstep=1", "--testphase=0"
 
 - Step 1 (testing):
-Set "--tstep=1", "--multir=1", "--testphase=1"
+Set "--tstep=1", "--testphase=1"
 
 - Step 2 (training):
-Set "--fth=200", "--tstep=2", "--multir=1", "--testphase=0"
+Set "--fth=200", "--tstep=2", "--testphase=0"
 
 - Step 2 (testing):
-Set "--fth=200", "--tstep=2", "--multir=1", "--testphase=1"
+Set "--fth=200", "--tstep=2", "--testphase=1"
 
 - Step 3 (training):
-Set "--fth=200", "--tstep=3", "--multir=1", "--testphase=0"
+Set "--fth=200", "--tstep=3", "--testphase=0"
 
 - Step 3 (testing):
-Set "--fth=200", "--tstep=3", "--multir=1", "--testphase=1"
+Set "--fth=200", "--tstep=3", "--testphase=1"
 
 
 ## Main experiments with the CFHTLS-WIDE data and "Net_P"
@@ -109,7 +109,7 @@ Set "--bins" = 20,50,180,500,1000
 
 ## Impact of the number of iterations with the SDSS data and "Net_P"
 
-Set "--itealter=240000" in Baseline & Step 1
+Set "--itealter=1" in Baseline & Step 1
 
 Set "--itealter" = 2000,5000,10000,20000,60000,120000,160000,240000 in Steps 2 & 3
 
