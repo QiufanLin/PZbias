@@ -287,11 +287,11 @@ if pretrain:
     if use_CFHTmix:
         Pretrain = 'preCFHTmix_'
         model_load = 'model_T6_' + Net + 'nonrotate_' + Algorithm.replace('ite40000', 'ite' + str(iterations_pre)).replace('_iteAlter' + str(ite_altercheckpoint), '').replace('yDisp_commonroutsigz_zExt' + str(bins_l_ext) + 'v' + str(bins_r_ext) + '_yDispExt_', '').replace('noErr_', '').replace('cmass2_', '').replace('dilated5mm_', '').replace('hard_', '').replace('noshift_', '') + TrainData.replace('CmixW', 'Cmix').replace('CmixD', 'Cmix') + 'scratch_NoD_hardClabel_NonRegrid_' + z_prix + '_/'
-        print ('model_load:', model_load)
+        print ('pretrained_model_load:', model_load)
     elif use_SDSS:
         Pretrain = 'preSDSS_'
         model_load = 'model_T6_' + Net + 'nonrotate_' + Algorithm.replace('ite40000', 'batch128_ite' + str(iterations_pre)).replace('_iteAlter' + str(ite_altercheckpoint), '').replace('yDisp_commonroutsigz_zExt' + str(bins_l_ext) + 'v' + str(bins_r_ext) + '_yDispExt_', '').replace('noErr_', '').replace('cmass2_', '').replace('dilated5mm_', '').replace('hard_', '').replace('noshift_', '') + TrainData.replace('noSub_', '') + 'scratch_NoD_hardClabel_NonRegrid_' + z_prix + '_/'
-        print ('model_load:', model_load)
+        print ('pretrained_model_load:', model_load)
     if parttrain: Pretrain = Pretrain + 'parttrain_lastfc_'
 else: Pretrain = 'scratch_'
     
@@ -313,12 +313,12 @@ print (fx)
 print ('#####') 
 
 
-if test_phase or tstep > 1:
+if test_phase:
 #    model_load = model_savepath
     model_load = directory_input + 'model_T6_' + fx + '/'
-if test_phase:
     iterations = 0
-
+elif tstep > 1:
+    model_load = directory_input + model_load
 
 
 ###############################
@@ -992,8 +992,8 @@ else:
 session = tf.InteractiveSession(config=session_conf)
 
 
-tvars = tf.trainable_variables()
 if not test_phase:
+    tvars = tf.trainable_variables()
     if parttrain:
         tvars = [var for var in tvars if ('fc2' in var.name)]            
     optimizer = tf.train.AdamOptimizer(learning_rate=lr)
@@ -1010,7 +1010,10 @@ if test_phase or pretrain:
         f = open(model_load + 'checkpoint', 'w')
         f.write('model_checkpoint_path: "-' + str(ite_altercheckpoint-1) + '"\n' + 'all_model_checkpoint_paths: "-' + str(ite_altercheckpoint-1) + '"')
         f.close()
-    saver = tf.train.Saver(var_list = tvars)
+    tvars = tf.trainable_variables()
+    if tstep == 3:
+        tvars = [var for var in tvars if ('fc2' not in var.name)]
+    saver = tf.train.Saver(var_list=tvars)
     saver.restore(session, tf.train.latest_checkpoint(model_load))
     if alter_checkpoint and ((tstep < 2 and test_phase) or (tstep > 1 and not test_phase)):
         f = open(model_load + 'checkpoint', 'w')
@@ -1018,6 +1021,7 @@ if test_phase or pretrain:
         f.close()
         
 if tstep == 2 and flat_threshold == 10000:
+    tvars = tf.trainable_variables()
     saver = tf.train.Saver()
     saver.save(session, model_savepath, 0)                
 
