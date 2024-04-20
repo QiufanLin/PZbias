@@ -109,9 +109,9 @@ Set "--bins" = 20,50,180,500,1000
 
 ## Impact of the number of iterations with the SDSS data and "Net_P"
 
-Set "--itealter=1" in Baseline & Step 1
+Set "--itealter" = 2000,5000,10000,20000,60000,120000,160000,240000 in Baseline & Step 1
 
-Set "--itealter" = 2000,5000,10000,20000,60000,120000,160000,240000 in Steps 2 & 3
+Set "--itealter=1" in Steps 2 & 3
 
 
 ## Impact of the sample size with the SDSS data and "Net_P"
